@@ -1,0 +1,9 @@
+name: GitHub Actions Demo
+on: [push]
+
+jobs:
+Run-Date-After-Push:
+runs-on:  ubuntu-lastest
+
+steps:
+  -run: date
