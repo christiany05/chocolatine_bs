@@ -3,7 +3,6 @@ on: [push]
 
 jobs:
   Run_Date_After_Push:
-    runs-on:  ubuntu-lastest
-
+    runs-on:  ubuntu-latest
     steps:
-      -run: date
+      - run: date
