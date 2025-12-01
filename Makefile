@@ -9,14 +9,11 @@
 CC      = gcc
 CFLAGS  = -Wall -Wextra -g -pthread
 
-SRC     =   panoramix.c  \
-            main.c       \
-            init.c       \
-            create_cln.c \
+SRC     =   calcul.c  \
 
 OBJ     = $(SRC:.c=.o)
 
-BIN     = panoramix
+BIN     = calcul
 
 all: $(BIN)
 
@@ -38,4 +35,4 @@ re: fclean all
 
 tests_run:
 	$(CC) $(CFLAGS) -I. -o unit_tests $(OBJ) tests/*.c -lcriterion --coverage
-	./unit_tests 3 5 3 1
+	./unit_tests 10 + 2
