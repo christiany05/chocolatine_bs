@@ -38,4 +38,4 @@ re: fclean all
 
 tests_run:
 	$(CC) $(CFLAGS) -I. -o unit_tests $(OBJ) tests/*.c -lcriterion --coverage
-	./unit_tests
+	./unit_tests 3 5 3 1
