@@ -5,28 +5,37 @@
 ## Makefile
 ##
 
-##
-## EPITECH PROJECT, 2024
-## makefile
-## File description:
-## make
-##
 
-SRC	=	panoramix.c	\
-		main.c	\
-		init.c	\
-		create_cln.c	\
+CC      = gcc
+CFLAGS  = -Wall -Wextra -g
 
-OBJ	=	$(subst .c,.o,$(SRC))
+SRC     =   panoramix.c  \
+            main.c       \
+            init.c       \
+            create_cln.c \
 
-BIN	=	panoramix
+OBJ     = $(SRC:.c=.o)
+
+BIN     = panoramix
 
 all: $(BIN)
 
-$(BIN):		$(SRC)
-		gcc -o $(BIN) $(SRC)
+$(BIN): $(OBJ)
+	$(CC) $(CFLAGS) -o $(BIN) $(OBJ)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
 clean:
 	rm -rf *.o
+	rm -rf *.gcno *.gcda
+	rm -f unit_tests
+
 fclean: clean
 	rm -f $(BIN)
+
 re: fclean all
+
+tests_run:
+	@$(CC) $(CFLAGS) -o unit_tests $(SRC) tests/*.c -lcriterion --coverage
+	@./unit_tests
