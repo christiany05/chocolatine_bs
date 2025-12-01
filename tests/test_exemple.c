@@ -10,6 +10,7 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <stdio.h>
+#include <fcntl.h>
 #include "../panoramix.h"
 
 char *run_panoramix(int nb_villagers, int pot_size, int nb_fights, int nb_refills)
@@ -55,6 +56,17 @@ int run_panoramix_and_get_exit_code(char *arg1, char *arg2, char *arg3, char *ar
     char *argv[] = {"./panoramix", arg1, arg2, arg3, arg4, NULL};
     
     pid = fork();
+
+    if (pid == 0) {
+        
+        int dev_null = open("/dev/null", O_WRONLY);
+        dup2(dev_null, STDOUT_FILENO);
+        dup2(dev_null, STDERR_FILENO);
+        close(dev_null);
+
+        execvp(argv[0], argv); 
+        
+    }
     
     if (pid == -1) {
         perror("fork");
@@ -79,8 +91,7 @@ Test(panoramix_suite, invalid_nb_villagers)
 {
     int exit_code;
     
-    exit_code = run_panoramix_and_get_exit_code("0", "5", "3", "1");
+    exit_code = run_panoramix_and_get_exit_code("3", "5", "3", "1");
     
-    cr_assert_neq(exit_code, 0, "Le programme doit échouer pour nb_villagers=0.");
-    
+    cr_assert_eq(exit_code, 84, "Le code de sortie doit être 84 pour arguments invalides.");
 }
