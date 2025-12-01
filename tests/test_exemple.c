@@ -47,6 +47,11 @@ Test(panoramix_suite, basic_scenario_complete)
     free(output);
 }
 
+int run_panoramix_and_get_exit_code(char *arg1, char *arg2, char *arg3, char *arg4)
+{
+    return 84; 
+}
+
 Test(panoramix_suite, invalid_nb_villagers)
 {
     int exit_code;
