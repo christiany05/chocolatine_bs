@@ -32,7 +32,7 @@ clean:
     rm -f unit_tests
 
 fclean: clean
-    rm -f $(BIN)
+	rm -f $(BIN)
 
 re: fclean all
 
