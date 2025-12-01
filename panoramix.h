@@ -42,5 +42,6 @@ void create_threads(shared_data_t *shared, int nb_villagers,
 void cleanup_threads(shared_data_t *shared, int nb_villagers,
                     pthread_t *druid, pthread_t *villagers);
 int parse_positive_int(const char *arg);
+char *run_panoramix(int nb_villagers, int pot_size, int nb_fights, int nb_refills);
 
 #endif // PANORAMIX_H

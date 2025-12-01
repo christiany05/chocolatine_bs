@@ -9,6 +9,7 @@
 #include <criterion/redirect.h>
 #include <unistd.h>
 #include <sys/wait.h>
+#include "../panoramix.h"
 
 char *run_panoramix(int nb_villagers, int pot_size, int nb_fights, int nb_refills)
 {
